@@ -12,22 +12,18 @@ public class Peashooter extends Plant {
 
     @Override
     public void action() {
+        if (this.getHealth() <= 0) {
+            remove();
+        }
     }
 
     @Override
     public void onCollision(Collider collider) {
-        if(collider instanceof Zombie){
-            ((Zombie) collider).setHealth(((Zombie) collider).getHealth() - this.attack);
-            this.setHealth(this.getHealth() - ((Zombie) collider).getAttack());
+        if (collider instanceof Zombie) {
+            double peashooterHealth = this.getHealth();
+            double newPeashooterHealth = peashooterHealth - ((Zombie) collider).getAttack();
+            this.setHealth(newPeashooterHealth);
         }
     }
 
-    public int setHealth(int i) {
-        this.health = i;
-        return this.health;
-    }
-
-    public int getHealth() {
-        return this.health;
-    }
 }

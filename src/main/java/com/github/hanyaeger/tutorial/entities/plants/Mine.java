@@ -5,6 +5,7 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.tutorial.entities.zombies.Zombie;
 
 public class Mine extends Plant {
+    // explodeert als een zombie ermee collide
 
     public Mine(Coordinate2D location) {
         super(25, 100, 10, location, "sprites/potatomine.png", 2);

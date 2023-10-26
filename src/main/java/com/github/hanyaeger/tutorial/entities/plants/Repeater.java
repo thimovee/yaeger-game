@@ -20,18 +20,9 @@ public class Repeater extends Plant {
 
     @Override
     public void onCollision(Collider collider) {
-        if(collider instanceof Zombie){
-            ((Zombie) collider).setHealth(((Zombie) collider).getHealth() - this.attack);
+        if (collider instanceof Zombie) {
             this.setHealth(this.getHealth() - ((Zombie) collider).getAttack());
         }
     }
 
-    public int setHealth(int i) {
-        this.health = i;
-        return this.health;
-    }
-
-    public int getHealth() {
-        return this.health;
-    }
 }

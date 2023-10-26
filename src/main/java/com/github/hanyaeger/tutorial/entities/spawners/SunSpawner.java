@@ -1,6 +1,9 @@
-package com.github.hanyaeger.tutorial.entities.sun;
+package com.github.hanyaeger.tutorial.entities.spawners;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.EntitySpawner;
+import com.github.hanyaeger.tutorial.entities.sun.Sun;
+import com.github.hanyaeger.tutorial.entities.sun.SunValue;
+import com.github.hanyaeger.tutorial.entities.sun.SunValueDisplay;
 
 import java.util.Random;
 

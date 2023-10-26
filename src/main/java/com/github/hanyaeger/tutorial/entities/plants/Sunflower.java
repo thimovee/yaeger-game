@@ -13,7 +13,7 @@ public class Sunflower extends Plant {
     private SunValueDisplay sunValueDisplay;
 
     public Sunflower(Coordinate2D location, SunValueDisplay sunValueDisplay) {
-        super(50, 100, 10, location, "sprites/sunflowerGif.gif", 1);
+        super(50, 100, 0, location, "sprites/sunflowerGif.gif", 1);
         sunCounter = 0;
         this.sunValueDisplay = sunValueDisplay;
     }
@@ -38,13 +38,5 @@ public class Sunflower extends Plant {
         }
     }
 
-    public int setHealth(int i) {
-        this.health = i;
-        return this.health;
-    }
-
-    public int getHealth() {
-        return this.health;
-    }
 
 }

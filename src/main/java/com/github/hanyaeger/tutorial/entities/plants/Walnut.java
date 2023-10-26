@@ -7,7 +7,7 @@ import com.github.hanyaeger.tutorial.entities.zombies.Zombie;
 public class Walnut extends Plant {
 
     public Walnut(Coordinate2D location) {
-        super(50, 100, 10, location, "sprites/Walnut.png", 3);
+        super(50, 100, 0, location, "sprites/Walnut.png", 3);
     }
 
     @Override
@@ -24,13 +24,5 @@ public class Walnut extends Plant {
         }
     }
 
-    public int setHealth(int i) {
-        this.health = i;
-        return this.health;
-    }
-
-    public int getHealth() {
-        return this.health;
-    }
 
 }

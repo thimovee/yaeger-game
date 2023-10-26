@@ -1,5 +1,4 @@
 package com.github.hanyaeger.tutorial.scenes;
-
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.Size;
@@ -8,25 +7,23 @@ import com.github.hanyaeger.tutorial.MainGame;
 import com.github.hanyaeger.tutorial.entities.map.GrassTile;
 import com.github.hanyaeger.tutorial.entities.map.PlantCard;
 import com.github.hanyaeger.tutorial.entities.plants.*;
-import com.github.hanyaeger.tutorial.entities.sun.SunSpawner;
+import com.github.hanyaeger.tutorial.entities.spawners.PeaSpawner;
+import com.github.hanyaeger.tutorial.entities.spawners.SunSpawner;
 import com.github.hanyaeger.tutorial.entities.sun.SunValue;
 import com.github.hanyaeger.tutorial.entities.sun.SunValueDisplay;
-import com.github.hanyaeger.tutorial.entities.zombies.AllStar;
 import com.github.hanyaeger.tutorial.entities.zombies.Zombie;
+import com.github.hanyaeger.tutorial.entities.spawners.ZombieSpawner;
 import com.github.hanyaeger.tutorial.ui.buttons.MenuButton;
-import javafx.scene.Scene;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class FirstLevel extends DynamicScene implements EntitySpawnerContainer {
     private MainGame plantworld;
     private SunValueDisplay sunValueDisplay = new SunValueDisplay(new Coordinate2D(43, 78));;
     private SunValue sunValue = new SunValue();
-    private List<Plant> plants;
-    private List<Zombie> zombies;
+    private List<Plant> plants = new ArrayList<>();
+    private List<Zombie> zombies = new ArrayList<>();
+    private ZombieSpawner zombieSpawner;
 
     private Timer timer;
 
@@ -41,7 +38,9 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer {
     }
 
 
-
+public void setScene(int sceneId){
+        plantworld.setActiveScene(sceneId);
+}
 
     public void addPlant(Coordinate2D location, int selectedPlantId) {
         switch (selectedPlantId) {
@@ -51,6 +50,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer {
                     break;
                 } else {
                     addEntity(peashooter);
+                    plants.add(peashooter);
                     addEntitySpawner(new PeaSpawner(peashooter, 1000));
                     sunValue.decrease(peashooter.getCost());
                     sunValueDisplay.setSunText(sunValue.getValue());
@@ -62,6 +62,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer {
                     break;
                 } else {
                     addEntity(sunflower);
+                    plants.add(sunflower);
                     addEntitySpawner(new SunSpawner(location, sunValue, sunValueDisplay));
                     sunValue.decrease(sunflower.getCost());
                     sunValueDisplay.setSunText(sunValue.getValue());
@@ -73,6 +74,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer {
                     break;
                 } else {
                     addEntity(mine);
+                    plants.add(mine);
                     sunValue.decrease(mine.getCost());
                     sunValueDisplay.setSunText(sunValue.getValue());
                     break;
@@ -83,6 +85,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer {
                     break;
                 } else {
                     addEntity(walnut);
+                    plants.add(walnut);
                     sunValue.decrease(walnut.getCost());
                     sunValueDisplay.setSunText(sunValue.getValue());
                     break;
@@ -93,6 +96,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer {
                     break;
                 } else {
                     addEntity(repeater);
+                    plants.add(repeater);
                     addEntitySpawner(new PeaSpawner(repeater, 500));
                     sunValue.decrease(repeater.getCost());
                     sunValueDisplay.setSunText(sunValue.getValue());
@@ -127,32 +131,51 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                performPlantActions();
+                performZombieActions();
             }
         }, 0, 1000);
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                performZombieActions();
+                performPlantActions();
             }
         }, 0, 1000);
 
+
+
     }
+
+
     public void performPlantActions() {
-        for (Plant plant : plants) {
+        Iterator<Plant> iterator = plants.iterator();
+        while (iterator.hasNext()) {
+            Plant plant = iterator.next();
             plant.action();
+
+            if (plant.getHealth() <= 0) {
+                iterator.remove();
+            }
+        }
+    }
+    public void performZombieActions() {
+        Iterator<Zombie> iterator = zombies.iterator();
+        while (iterator.hasNext()) {
+            Zombie zombie = iterator.next();
+            zombie.action();
+
+            if (zombie.getHealth() <= 0) {
+                iterator.remove();
+            }
         }
     }
 
-    public void performZombieActions() {
-        for (Zombie zombie : zombies) {
-            zombie.action();
-        }
-    }
 
 
     @Override
     public void setupEntitySpawners() {
+        zombieSpawner = new ZombieSpawner(new Coordinate2D(getWidth(), getHeight()), zombies);
         addEntitySpawner(new SunSpawner(new Coordinate2D(getWidth(), getHeight()), sunValue, sunValueDisplay));
+        addEntitySpawner(zombieSpawner);
+
     }
 }
