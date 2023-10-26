@@ -1,8 +1,9 @@
-package com.github.hanyaeger.tutorial.entities;
+package com.github.hanyaeger.tutorial.entities.sun;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 import com.github.hanyaeger.api.userinput.MouseEnterListener;
+
 
 public class Sun extends SpriteEntity implements MouseEnterListener {
     private SunValue sunValue;

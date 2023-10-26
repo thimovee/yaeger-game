@@ -1,4 +1,4 @@
-package com.github.hanyaeger.tutorial.entities;
+package com.github.hanyaeger.tutorial.entities.sun;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.EntitySpawner;
 
@@ -12,7 +12,7 @@ public class SunSpawner extends EntitySpawner {
     private final SunValueDisplay sunValueDisplay;
 
     public SunSpawner(Coordinate2D coordinate2D, SunValue sunValue, SunValueDisplay sunValueDisplay) {
-        super(200);
+        super(20000);
         this.sceneWidth = coordinate2D.getX();
         this.sceneHeight = coordinate2D.getY();
         this.sunValue = sunValue;

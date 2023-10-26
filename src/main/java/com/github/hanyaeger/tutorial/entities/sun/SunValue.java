@@ -1,10 +1,10 @@
-package com.github.hanyaeger.tutorial.entities;
+package com.github.hanyaeger.tutorial.entities.sun;
 
 public class SunValue {
-    private int value = 0;
+    private int value;
 
     public SunValue() {
-        this.value = 0;
+        this.value = 100;
     }
 
     public void increase() {
@@ -13,5 +13,9 @@ public class SunValue {
 
     public int getValue() {
         return value;
+    }
+
+    public void decrease(int amount) {
+        value -= amount;
     }
 }
