@@ -48,8 +48,5 @@ public class GrassTile extends RectangleEntity implements MouseButtonPressedList
         setOpacity(0);
     }
 
-    public void setOccupied(boolean isOccupied) {
-        this.isOccupied = isOccupied;
-    }
 
 }

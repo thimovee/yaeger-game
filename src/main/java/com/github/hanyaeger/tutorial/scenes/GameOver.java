@@ -12,10 +12,10 @@ import javafx.scene.text.FontWeight;
 
 public class GameOver extends StaticScene {
 
-    private MainGame plantworld;
+    private MainGame mainGame;
 
-    public GameOver(MainGame plantworld){
-        this.plantworld = plantworld;
+    public GameOver(MainGame mainGame){
+        this.mainGame = mainGame;
     }
     @Override
     public void setupScene(){
@@ -24,15 +24,15 @@ public class GameOver extends StaticScene {
 
     @Override
     public void setupEntities(){
-        var plantworldText = new TextEntity(
+        var mainGameText = new TextEntity(
                 new Coordinate2D(getWidth() / 2, getHeight() / 2),
                 "Game Over"
         );
-        plantworldText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        plantworldText.setFill(Color.RED);
-        plantworldText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 80));
-        addEntity(plantworldText);
-        addEntity(new QuitButton(new Coordinate2D(getWidth() / 2, getHeight() / 2 + 200), plantworld));
+        mainGameText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        mainGameText.setFill(Color.RED);
+        mainGameText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 80));
+        addEntity(mainGameText);
+        addEntity(new QuitButton(new Coordinate2D(getWidth() / 2, getHeight() / 2 + 200), mainGame));
     }
 
 }

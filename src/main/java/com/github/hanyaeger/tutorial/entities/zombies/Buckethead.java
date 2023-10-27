@@ -40,7 +40,7 @@ public class Buckethead extends Zombie {
 
     private void headbutt(Plant plant) {
         double plantHealth = plant.getHealth();
-        double newPlantHealth = plantHealth - 5;
+        double newPlantHealth = plantHealth - (getAttack() * damageIncreaseFactor);
         plant.setHealth(newPlantHealth);
     }
 

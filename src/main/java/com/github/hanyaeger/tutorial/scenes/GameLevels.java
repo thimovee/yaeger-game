@@ -8,10 +8,10 @@ import com.github.hanyaeger.tutorial.ui.buttons.QuitButton;
 
 public class GameLevels extends StaticScene {
 
-    private MainGame plantworld;
+    private MainGame mainGame;
 
-    public GameLevels(MainGame plantworld){
-        this.plantworld = plantworld;
+    public GameLevels(MainGame mainGame){
+        this.mainGame = mainGame;
     }
     @Override
     public void setupScene(){
@@ -22,8 +22,8 @@ public class GameLevels extends StaticScene {
 
     @Override
     public void setupEntities(){
-        addEntity(new QuitButton(new Coordinate2D(getWidth() - 130, 5), plantworld));
-        addEntity(new LevelButton(new Coordinate2D(25, 70), plantworld));
+        addEntity(new QuitButton(new Coordinate2D(getWidth() - 130, 5), mainGame));
+        addEntity(new LevelButton(new Coordinate2D(25, 70), mainGame));
     }
 
 }

@@ -18,17 +18,18 @@ import com.github.hanyaeger.tutorial.ui.buttons.MenuButton;
 import java.util.*;
 
 public class FirstLevel extends DynamicScene implements EntitySpawnerContainer {
-    private MainGame plantworld;
+    private MainGame mainGame;
     private SunValueDisplay sunValueDisplay = new SunValueDisplay(new Coordinate2D(43, 78));;
     private SunValue sunValue = new SunValue();
     private List<Plant> plants = new ArrayList<>();
     private List<Zombie> zombies = new ArrayList<>();
+    private List<GrassTile> grassTiles = new ArrayList<>();
     private ZombieSpawner zombieSpawner;
 
     private Timer timer;
 
-    public FirstLevel(MainGame plantworld){
-        this.plantworld = plantworld;
+    public FirstLevel(MainGame mainGame){
+        this.mainGame = mainGame;
     }
     @Override
     public void setupScene(){
@@ -39,7 +40,7 @@ public class FirstLevel extends DynamicScene implements EntitySpawnerContainer {
 
 
 public void setScene(int sceneId){
-        plantworld.setActiveScene(sceneId);
+        mainGame.setActiveScene(sceneId);
 }
 
     public void addPlant(Coordinate2D location, int selectedPlantId) {
@@ -112,7 +113,9 @@ public void setScene(int sceneId){
             for (int col = 0; col < 9; col++) {
                 double x = 410 + 105 * col;
                 double y = 100 + 120 * row;
-                addEntity(new GrassTile(new Coordinate2D(x, y), false, this));
+                GrassTile grassTile = new GrassTile(new Coordinate2D(x, y), false, this);
+                addEntity(grassTile);
+                grassTiles.add(grassTile);
             }
         }
 
@@ -123,7 +126,7 @@ public void setScene(int sceneId){
         }
 
 
-        addEntity(new MenuButton(new Coordinate2D(getWidth() - 115, 5), plantworld));
+        addEntity(new MenuButton(new Coordinate2D(getWidth() - 115, 5), mainGame));
         addEntity(sunValueDisplay);
 
 
@@ -173,7 +176,7 @@ public void setScene(int sceneId){
 
     @Override
     public void setupEntitySpawners() {
-        zombieSpawner = new ZombieSpawner(new Coordinate2D(getWidth(), getHeight()), zombies);
+        zombieSpawner = new ZombieSpawner(zombies);
         addEntitySpawner(new SunSpawner(new Coordinate2D(getWidth(), getHeight()), sunValue, sunValueDisplay));
         addEntitySpawner(zombieSpawner);
 

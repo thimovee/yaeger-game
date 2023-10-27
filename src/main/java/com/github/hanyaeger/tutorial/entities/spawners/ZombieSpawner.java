@@ -1,5 +1,4 @@
 package com.github.hanyaeger.tutorial.entities.spawners;
-
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.entities.EntitySpawner;
@@ -15,9 +14,6 @@ import java.util.Random;
 
 public class ZombieSpawner extends EntitySpawner implements SceneBorderTouchingWatcher {
 
-    private final double sceneWidth;
-    private final double sceneHeight;
-
     private List<Zombie> zombies;
 
 
@@ -29,10 +25,8 @@ public class ZombieSpawner extends EntitySpawner implements SceneBorderTouchingW
             ZombieType.FLAG
     };
 
-    public ZombieSpawner(Coordinate2D coordinate2D, List<Zombie> zombies) {
-        super(90);
-        this.sceneWidth = coordinate2D.getX();
-        this.sceneHeight = coordinate2D.getY();
+    public ZombieSpawner(List<Zombie> zombies) {
+        super(8000);
         this.zombies = zombies;
     }
 
@@ -67,50 +61,50 @@ public class ZombieSpawner extends EntitySpawner implements SceneBorderTouchingW
         }
     }
 
-    @Override
+
     public void setMotionApplier(MotionApplier motionApplier) {
 
     }
 
-    @Override
+
     public MotionApplier getMotionApplier() {
         return null;
     }
 
-    @Override
+
     public void setAnchorLocationX(double v) {
 
     }
 
-    @Override
+
     public void setAnchorLocationY(double v) {
 
     }
 
-    @Override
+
     public void setAnchorLocation(Coordinate2D coordinate2D) {
 
     }
 
-    @Override
+
     public Coordinate2D getAnchorLocation() {
         return null;
     }
 
-    @Override
+
     public void transferCoordinatesToNode() {
 
     }
 
-    @Override
+
     public void setAnchorPoint(AnchorPoint anchorPoint) {}
 
-    @Override
+
     public AnchorPoint getAnchorPoint() {
         return null;
     }
 
-    @Override
+
     public Optional<? extends Node> getNode() {
         return Optional.empty();
     }
@@ -119,7 +113,5 @@ public class ZombieSpawner extends EntitySpawner implements SceneBorderTouchingW
         this.zombies = zombies;
     }
 
-    public void getZombies(List<Zombie> zombies) {
-        this.zombies = zombies;
-    }
+
 }
