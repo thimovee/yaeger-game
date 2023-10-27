@@ -10,7 +10,7 @@ import java.util.TimerTask;
 public class Buckethead extends Zombie {
     private double damageIncreaseFactor = 1.0;
     private Timer damageIncreaseTimer = new Timer();
-    private int damageBoostTimer = 0; // Track the number of times the timer has elapsed
+    private int damageBoostTimer = 0;
 
     public Buckethead(Coordinate2D location) {
         super(100, 1, location, "sprites/buckethead.gif", 3);
